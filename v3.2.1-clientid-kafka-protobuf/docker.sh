@@ -10,7 +10,7 @@ ARCH="${ARCH:-amd64}"
 QEMU_VERSION="${QEMU_VERSION:-v4.0.0}"
 
 # versioning
-EMQX_VERSION="${EMQX_VERSION:-${TAG_VSN:-3.2.1-clientid-kafka-protobuf}}"
+EMQX_VERSION="${EMQX_VERSION:-${TAG_VSN:-v3.2.1-clientid-kafka-protobuf}}"
 BUILD_VERSION="${BUILD_VERSION:-${EMQX_VERSION}}"
 
 main() {
@@ -74,7 +74,7 @@ docker_build() {
   prepare_qemu
 
   docker build --no-cache \
-    --build-arg EMQX_DEPS_DEFAULT_VSN=${EMQX_VERSION} \
+    --build-arg EMQX_DEPS_DEFAULT_VSN=v3.2.1 \
     --build-arg BUILD_FROM=${ARCH}/erlang:21.3.6-alpine  \
     --build-arg RUN_FROM=${ARCH}/alpine:3.9 \
     --build-arg DEPLOY=${EMQX_DEPLOY} \
