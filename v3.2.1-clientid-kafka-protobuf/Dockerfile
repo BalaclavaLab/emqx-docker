@@ -8,6 +8,8 @@ COPY tmp/qemu-$QEMU_ARCH-stati* /usr/bin/
 RUN apk add git \
     curl \
     gcc \
+    g++ \
+    bash \
     make \
     perl \
     ncurses-dev \
@@ -19,7 +21,7 @@ RUN apk add git \
 ARG EMQX_DEPS_DEFAULT_VSN=v3.2.1
 ARG DEPLOY=cloud
 
-RUN git clone -b ${EMQX_DEPS_DEFAULT_VSN} https://github.com/BalaclavaLab/emqx-rel.git /emqx_rel \
+RUN git clone -b v3.2.1-clientid-kafka-protobuf https://github.com/BalaclavaLab/emqx-rel.git /emqx_rel \
     && cd /emqx_rel \
     && make distclean \
     && [[ ${DEPLOY} == "edge" ]] && make emqx_edge || make 
